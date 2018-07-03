@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import "./css/App.css";
+import * as actions from "../actions";
+import { connect } from "react-redux";
+import _ from "lodash";
 class App extends Component {
   state = { url: "" };
   handleSubmit = e => {
     e.preventDefault();
-    //Action Creater
+    this.props.fetchURL(this.state.url);
     this.setState({ url: "" });
   };
   handleChange = e => {
     this.setState({ url: e.target.value });
   };
+  renderUrl() {
+    if (!this.props.url) {
+      return <div>Your Shortend Url Will Appear here</div>;
+    }
+    return <div>{this.props.url.shortUrl}</div>;
+  }
   render() {
     return (
       <div className="container__item landing-page-container">
@@ -21,7 +30,7 @@ class App extends Component {
             <h1 className="heading header__item">Shortnr</h1>
           </header>
           <p className="coords">ABHINAV JAIN</p>
-          <div class="url">
+          <div className="url">
             <h2 className="greeting">url!!</h2>
             <form onSubmit={this.handleSubmit}>
               <input
@@ -31,6 +40,7 @@ class App extends Component {
                 placeholder="Enter Url"
               />
               <button type="submit">Shorten</button>
+              {this.renderUrl()}
             </form>
           </div>
         </div>
@@ -38,4 +48,12 @@ class App extends Component {
     );
   }
 }
-export default App;
+
+function mapStateToProps({ url }) {
+  return { url };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(App);

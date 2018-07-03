@@ -21,7 +21,7 @@ module.exports = app => {
       res.send({ shortUrl });
     }
   });
-  app.get("/:code", async (req, res) => {
+  app.get("/api/:code", async (req, res) => {
     const { code } = req.params;
     const item = await Url.findOne({ urlCode: code });
     if (item) {

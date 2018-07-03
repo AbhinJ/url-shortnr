@@ -146,5 +146,6 @@ button {
   color: #fff;
   border: 0px;
   border-radius: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
