@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: "",
-  webHost: ""
+  mongoURI: process.env.MONGO_URI,
+  webHost: process.env.WEB_HOST
 };
