@@ -10,7 +10,7 @@ module.exports = app => {
     const urlCode = shortid.generate();
     const item = await Url.findOne({ long_url });
     if (item) {
-      let shortUrl = keys.webHost + urlCode;
+      let shortUrl = keys.webHost + item.urlCode;
       res.send({ shortUrl });
     } else {
       let shortUrl = keys.webHost + urlCode;
